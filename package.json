@@ -1,0 +1,25 @@
+{
+    "name": "esanalyze",
+    "description": "ECMAScript Static Analyzer",
+    "main": "main.js",
+    "version": "0.0.1-dev",
+    "author": {
+        "name": "David Quintana",
+        "email": "gigaherz@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/gigaherz/esanalyze.git"
+    },
+    "bugs": "https://github.com/gigaherz/esanalyze/issues",
+    "licenses": [
+        {
+            "type": "BSD",
+            "url": "http://github.com/gigaherz/esanalyze/raw/master/LICENSE.BSD"
+        }
+    ],
+    "dependencies": {
+        "esprima":"",
+        "eswalker":""
+    }
+}
