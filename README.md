@@ -10,10 +10,10 @@ return values, and even object interfaces.
 Dependencies
 ------------
 
-**(esprima)[http://esprima.org/]**: esanalyze uses esprima as the default
+**[esprima](http://esprima.org/)**: esanalyze uses esprima as the default
 parser, but any parser compatible with Mozilla's
 (Parser API)[https://developer.mozilla.org/en/SpiderMonkey/Parser_API] should
 work instead.
 
-**(eswalker)[https://github.com/gigaherz/eswalker]**: esanalyze uses eswalker
+**[eswalker](https://github.com/gigaherz/eswalker)**: esanalyze uses eswalker
 to visit the AST nodes.
