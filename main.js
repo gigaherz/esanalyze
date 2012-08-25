@@ -10,21 +10,6 @@
 {
     'use strict';
 
-    function printLn(text) {
-        process.stdout.write(text + '\n');
-    }
-
-    function warn(token, message) {
-        printLn('WARNING: At line ' + token.loc.start.line + ' char ' +
-                (token.loc.start.column+1) + ': ' + message);
-    }
-
-    function error(token, message) {
-        printLn('ERROR: At line ' + token.loc.start.line + ' char ' +
-               (token.loc.start.column+1) + ': ' + message);
-        process.exit(1);
-    }
-
     function objectLength(obj) {
         var size = 0, key;
         for (key in obj) {
@@ -83,23 +68,25 @@
         };
     }
 
-    var fs = require('fs'),
-        esprima = require('esprima'),
-        walker = require('eswalker');
-        //escodegen = require('escodegen');
+    var Reflect = require('esprima');
+    var Instrument = require('./instrument.js').instrument;
 
-    var decoded = (function loadCode(src) {
+    var original = (function loadCode(src) {
+        var fs = require('fs');
 
         var contents = fs.readFileSync(src);
 
-        return esprima.parse(contents, {
+        return Reflect.parse(contents, {
             loc: true,
             source: src
         });
-    })('./hello_world.js');
+    })('./examples/tests.js');
 
-    var instrumented = instrument.walk(decoded);
+    var instrumented = Instrument.walk(original);
 
-    printLn('Context chain: ' +
-            JSON.stringify(extractContextsRecursively(instrumented.context)));
+    var context = extractContextsRecursively(instrumented.context);
+
+    // Show context tree
+    process.stdout.write('Context tree: ' +
+                         JSON.stringify(context, null, '  ') + '\n');
 })();
